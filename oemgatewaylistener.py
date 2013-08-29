@@ -198,6 +198,9 @@ class OemGatewayRFM2PiListener(OemGatewaySerialListener):
         # Else, process frame
         else:
             try:
+                if(self._settings["sgroup"]=='0'):
+                    del received[0]
+                    del received[0]
                 received = [int(val) for val in received]
             except Exception:
                 self._log.warning("Misformed RX frame: " + str(received))
